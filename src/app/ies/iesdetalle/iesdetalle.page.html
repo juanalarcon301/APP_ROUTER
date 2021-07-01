@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot = "start">
+      <ion-back-button defaultHref="/ies"></ion-back-button>
+
+    </ion-buttons>
+    <ion-title>{{universidad.nombre_ies}}</ion-title>
+    <ion-buttons slot="end">
+
+      <ion-button (click)="eliminarIes()">
+
+        <ion-icon name="trash"></ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-no-padding">
+      <ion-col class="ion-no-padding">
+        <ion-img [src]="universidad.fotografia"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col class="ion-text-center">
+      {{universidad.nombre_ies}}
+    </ion-col>
+  </ion-row>
+  <ion-list *ngIf = "universidad.carreras && universidad.carreras.length>0;else noCarreras">
+    <ion-item *ngFor = "let carrera of universidad.carreras">
+      {{carrera}}
+    </ion-item>
+  </ion-list>
+  <ng-template #noCarreras>
+    <p class="ion-text-center">Sin carreras establecidad</p>
+  </ng-template>
+  </ion-grid>
+</ion-content>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { IesdetallePageModule } from './ies/iesdetalle/iesdetalle.module';
 
 const routes: Routes = [
   {
@@ -8,8 +9,19 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'ies',
     pathMatch: 'full'
+  },
+  {
+    path: 'ies',
+    children: [{
+      path: '',      
+    loadChildren: () => import('./ies/ies.module').then( m => m.IesPageModule)
+    },
+    {
+      path: ':id',
+    loadChildren: () => import('./ies/iesdetalle/iesdetalle.module').then(m => m.IesdetallePageModule)
+    }]
   },
 ];
 
